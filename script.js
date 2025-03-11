@@ -12,7 +12,8 @@ function App() {
   useEffect(() => {
     fetch(`https://script.google.com/macros/s/AKfycbwDWLghFbgyGiL1stwyd_W36gY_YrqhFuw4sA3mZxUrTDkOJd8uFmDOmMVP1VnMCkjM/exec?date=${date.toISOString().split('T')[0]}`)
       .then(res => res.json())
-      .then(data => setTimeSlots(data.availableTimes));
+      .then(data => setTimeSlots(data.availableTimes || []))
+      .catch(err => console.error('Error fetching time slots:', err));
   }, [date]);
 
   const submitBooking = () => {
@@ -31,6 +32,7 @@ function App() {
 
     fetch('https://script.google.com/macros/s/AKfycbwDWLghFbgyGiL1stwyd_W36gY_YrqhFuw4sA3mZxUrTDkOJd8uFmDOmMVP1VnMCkjM/exec', {
       method: 'POST',
+      headers: { "Content-Type": "application/json" }, // Ensure correct headers
       body: JSON.stringify(booking),
     })
     .then(res => res.json())
@@ -42,10 +44,7 @@ function App() {
     <div className="container">
       <h2>Book an Appointment</h2>
 
-      <ReactCalendar.Calendar
-        onChange={setDate}
-        value={date}
-      />
+      <ReactCalendar onChange={setDate} value={date} />
 
       <h3>Available Times</h3>
       {timeSlots.length > 0 ? (
