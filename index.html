@@ -5,14 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking App</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- React CDN -->
+  
+  <!-- ✅ React and ReactDOM -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- ✅ Babel for JSX support (only if using JSX in script.js) -->
+  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <!-- ✅ React Calendar (Only if using react-calendar) -->
   <script src="https://unpkg.com/react-calendar/dist/umd/react-calendar.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/react-calendar/dist/Calendar.css" />
 </head>
 <body>
   <div id="app"></div>
-  <script src="script.js"></script>
+
+  <!-- ✅ Your script file (Ensure it exists in GitHub) -->
+  <script type="text/babel" src="script.js"></script>
 </body>
 </html>
